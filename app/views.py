@@ -26,3 +26,7 @@ def increase_clicks(request, pk):
     app.clicks += 1
     app.save()
     return HttpResponseRedirect(app.url)
+
+
+def changelog(request):
+    return render(request, 'changelog.html')

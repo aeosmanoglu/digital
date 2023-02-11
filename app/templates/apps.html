@@ -61,7 +61,7 @@ window.onload = function() {
 
 		// Create a subtitle for the app CATEGORY
 		var app_card_subtitle = document.createElement("p");
-		app_card_subtitle.className = "card-subtitle text-muted small mb-3";
+		app_card_subtitle.className = "card-subtitle text-muted small mb-4";
 		app_card_subtitle.innerHTML = app_category;
 
 		// Create a text for the app NAME
@@ -69,27 +69,11 @@ window.onload = function() {
 		app_card_text.className = "card-text";
 		app_card_text.innerHTML = app_name;
 
-		// Create a arrow icon for the app
-		var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-		svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-		svg.setAttribute("width", "16");
-		svg.setAttribute("height", "16");
-		svg.setAttribute("fill", "currentColor");
-		svg.setAttribute("class", "bi bi-arrow-right");
-		svg.setAttribute("viewBox", "0 0 16 16");
-
-		var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-		path.setAttribute("fill-rule", "evenodd");
-		path.setAttribute("d", "M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z");
-
-		svg.appendChild(path);
-
 		// Create a link for the app
 		var app_card_url = document.createElement("a");
 		app_card_url.className = "link-primary stretched-link";
 		app_card_url.href = app_id + "/click/";
 		app_card_url.setAttribute("target", "_blank");
-		app_card_url.appendChild(svg);
 
 		// Append all elements to the column
 		app_card_body.appendChild(app_card_subtitle);

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+	<div class="row my-5">
+		<div class="col">
+			{% include 'partials/_back.html' %}
+
+			<h1>Hakkında</h1>
+
+			<h5>0.2.0</h5>
+			<ul>
+				<li>Ana sayfa eklendi.</li>
+				<li>Uygulamalar içerisinde arama özelliği eklendi.</li>
+				<li>Uygulamalar içerisinde kategori filtreleme özelliği eklendi.</li>
+				<li>Yeni uygulamaların en ön sırada gözükme özelliği eklendi.</li>
+				<li>Uygulamaların tıklanma sayısına göre sıralama özelliği eklendi.</li>
+			</ul>
+
+			<h5>0.1.0</h5>
+			<ul>
+				<li>Proje başlatıldı.</li>
+				<li>Tema özelleştirildi.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
