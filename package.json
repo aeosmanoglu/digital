@@ -1,0 +1,21 @@
+{
+  "name": "digital",
+  "version": "0.2.0",
+  "description": "Bu site, Jandarma Genel Komutanlığının dijitalleşme sürecinin bir parçası olarak, tüm uygulamalarını toplu bir şekilde sunmak amacıyla tasarlanmış ve hayata geçirilmiştir.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "freeze": "pip freeze > requirements.txt",
+    "pipi": "pip install -r requirements.txt",
+    "sass": "sass scss:static/css",
+    "sassdev": "sass --watch scss:static/css",
+    "mig": "python manage.py makemigrations && python manage.py migrate",
+    "csu": "python manage.py createsuperuser",
+    "serve": "python manage.py runserver"
+  },
+  "author": "Abuzer Emre Osmanoğlu",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "sass": "^1.58.0"
+  }
+}

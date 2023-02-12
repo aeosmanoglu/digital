@@ -1,0 +1,69 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here (so you can override Bootstrap's defaults)
+$primary:  #173F73;
+
+$white:    #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:    #000;
+
+$blue:    #3366FF;
+$indigo:  #6610f2;
+$purple:  #6f42c1;
+$pink:    #d63384;
+$red:     #931816;
+$orange:  #B26801;
+$yellow:  #ffc107;
+$green:   #5A7A01;
+$teal:    #20c997;
+$cyan:    #0dcaf0;
+
+$primary-50:    tint-color($primary, 95%);
+$primary-100:   tint-color($primary, 80%);
+$primary-200:   tint-color($primary, 60%);
+$primary-300:   tint-color($primary, 40%);
+$primary-400:   tint-color($primary, 20%);
+$primary-500:   $primary;
+$primary-600:   shade-color($primary, 20%);
+$primary-700:   shade-color($primary, 40%);
+$primary-800:   shade-color($primary, 60%);
+$primary-900:   shade-color($primary, 80%);
+$primary-1000:  shade-color($primary, 95%);
+
+$light:         $primary-50;
+$dark:          $primary-1000;
+$body-color:    $dark;
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../node_modules/bootstrap/scss/variables";
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/utilities";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+// 8. Add additional custom code here
