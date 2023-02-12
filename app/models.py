@@ -15,7 +15,7 @@ class Category(models.Model):
 
 class App(models.Model):
     name = models.CharField(max_length=255)
-    abbreviation = models.CharField(max_length=255, blank=True, null=True)
+    abbreviation = models.CharField(max_length=10, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     url = models.URLField()
     clicks = models.PositiveIntegerField(default=0)

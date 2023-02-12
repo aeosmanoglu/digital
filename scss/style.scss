@@ -43,6 +43,8 @@ $light:         $primary-50;
 $dark:          $primary-1000;
 $body-color:    $dark;
 
+$card-height:   100%;
+
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../node_modules/bootstrap/scss/variables";
 

@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import apps_view, increase_clicks, changelog
+from .views import get_apps, increase_clicks, changelog
 
 urlpatterns = [
-    path('', apps_view, name='apps_view'),
+    path('apps', get_apps, name='get_apps'),
     path('<int:pk>/click/', increase_clicks, name='increase_clicks'),
     path('changelog/', changelog, name='changelog'),
 ]
