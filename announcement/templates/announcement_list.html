@@ -1,196 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container">
 
 	<div class="row my-5">
 		<div class="col col-md-6 mx-auto">
-			<input class="form-control form-control-lg rounded-pill" id="search" placeholder="Ara..." type="search">
+			<label class="visually-hidden" for="search-input">Search</label>
+			<input class="form-control form-control-lg rounded-pill"
+				   id="search-input" placeholder="Ara..." type="search">
 		</div>
 	</div>
 
-	<div class="row" id="check"></div>
+	<div class="row" id="checkbox-container"></div>
 
-	<div class="row row-cols-1 row-cols-md-3 g-3 my-5" id="apps"></div>
+	<div class="row row-cols-1 row-cols-md-3 g-3 my-5" id="app-container"></div>
 </div>
-{% for announcement in announcements %}
-{{ announcement.name }}
-{% endfor %}
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+	{% for announcement in announcements %}
+	<div aria-atomic="true" aria-live="assertive" class="toast" data-bs-autohide="false" role="alert">
+		<div class="toast-header">
+			<strong class="me-auto">{{ announcement.name }}</strong>
+			{% if announcement.sub_title %}
+			<small class="text-muted">{{ announcement.sub_title }}</small>
+			{% endif %}
+			<button aria-label="Close" class="btn-close" data-bs-dismiss="toast" type="button"></button>
+		</div>
+		<div class="toast-body">
+			{{ announcement.content }}
+			{% if announcement.url %}
+			<a class="btn btn-primary btn-sm" href="{{ announcement.url }}">Daha fazla bilgi</a>
+			{% endif %}
+		</div>
+	</div>
+	{% endfor %}
+</div>
 {% endblock %}
 
 {% block extra_js %}
-<script type="text/javascript">
-	window.onload = function () {
-
-		var categories = [];
-
-		// Get all apps data from the server as JSON
-		fetch("{% url 'get_apps' %}")
-			.then(response => response.json())
-			.then(data => {
-
-				var apps = data['apps'];
-
-				// Sort apps by new and clicks
-				apps.sort(function (a, b) {
-					if (a.is_new == b.is_new) {
-						return b.clicks - a.clicks;
-					} else {
-						return a.is_new ? -1 : 1;
-					}
-				}); // end sort
-
-				// Create cards for each app
-				for (var i = 0; i < apps.length; i++) {
-					var app = apps[i];
-					var app_id = app["id"];
-					var app_name = app["name"];
-					var app_abbr = app["abbreviation"];
-					var app_clicks = app["clicks"];
-					var app_is_new = app["is_new"];
-					var app_category = app["category"];
-
-					// Create a column for the card
-					var col = document.createElement("div");
-					col.className = "col app";
-
-					// Create a card for the app
-					var app_card = document.createElement("div");
-					app_card.className = "card rounded-0";
-
-					// Create a card body for the app
-					var app_card_body = document.createElement("div");
-					app_card_body.className = "card-body";
-
-					// Create a title for the app ABBREVIATION
-					var app_card_title = document.createElement("h3");
-					app_card_title.className = "card-title";
-					app_card_title.innerHTML = app_abbr;
-
-					// Create a subtitle for the app CATEGORY
-					var app_card_subtitle = document.createElement("p");
-					app_card_subtitle.className = "card-subtitle text-muted small mb-4";
-					app_card_subtitle.innerHTML = app_category;
-
-					// Create a text for the app NAME
-					var app_card_text = document.createElement("p");
-					app_card_text.className = "card-text";
-					app_card_text.innerHTML = app_name;
-
-					// Create a link for the app
-					var app_card_url = document.createElement("a");
-					app_card_url.className = "link-primary stretched-link";
-					app_card_url.href = "{% url 'increase_clicks' pk=0 %}".replace("0", app_id);
-					app_card_url.setAttribute("target", "_blank");
-
-					// Append all elements to the column
-					app_card_body.appendChild(app_card_subtitle);
-					app_card_body.appendChild(app_card_title);
-					app_card_body.appendChild(app_card_text);
-					app_card_body.appendChild(app_card_url);
-					app_card.appendChild(app_card_body);
-					col.appendChild(app_card);
-
-					document.getElementById("apps").appendChild(col);
-
-					// Add category to the categories array if it is not already in it
-					if (categories.indexOf(app_category) == -1) {
-						categories.push(app_category);
-					}
-				} // end for
-
-				// Create checkboxes for each category
-				var check = document.getElementById("check");
-				for (var i = 0; i < categories.length; i++) {
-					var category = categories[i];
-
-					// Create a column for the checkbox
-					var col = document.createElement("div");
-					col.className = "col col-auto";
-
-					// Create input
-					var category_check = document.createElement("div");
-					category_check.className = "form-check form-switch form-check-inline";
-					var category_check_input = document.createElement("input");
-					category_check_input.className = "form-check-input";
-					category_check_input.type = "checkbox";
-					category_check_input.id = "inlineCheckbox" + i;
-					category_check_input.value = category;
-
-					// Create label
-					var category_check_label = document.createElement("label");
-					category_check_label.className = "form-check-label";
-					category_check_label.setAttribute("for", "inlineCheckbox" + i);
-					category_check_label.innerHTML = category;
-
-					// Append input and label to the div
-					category_check.appendChild(category_check_input);
-					category_check.appendChild(category_check_label);
-					col.appendChild(category_check);
-					check.appendChild(col);
-
-					// Check the checkbox if the category is in the local storage.
-					// Otherwise, add it to the local storage and check it.
-					if (localStorage.getItem(category) == null) {
-						localStorage.setItem(category, true);
-					}
-					category_check_input.checked = localStorage.getItem(category) == "true";
-
-					// Hide apps that are not in the checked categories. Otherwise, show them.
-					if (!category_check_input.checked) {
-						var apps = document.getElementsByClassName("app");
-						for (var j = 0; j < apps.length; j++) {
-							var app = apps[j];
-							var app_category = app.getElementsByClassName("card-subtitle")[0].innerHTML;
-							if (app_category == category) {
-								app.style.display = "none";
-							}
-						}
-					}
-
-					// Add event listener to the checkbox. When the checkbox is checked, show the apps in the category.
-					// Otherwise, hide them.
-					category_check_input.addEventListener("change", function (event) {
-						var apps = document.getElementsByClassName("app");
-						var category = this.value;
-						var checked = this.checked;
-						localStorage.setItem(category, checked);
-
-						for (var i = 0; i < apps.length; i++) {
-							var app = apps[i];
-							var app_category = app.getElementsByClassName("card-subtitle")[0].innerHTML;
-
-							if (app_category == category) {
-								if (checked) {
-									app.style.display = "block";
-								} else {
-									app.style.display = "none";
-								}
-							}
-						}
-					});
-				}
-			});
-	}
-
-	// Add event listener to the search bar. When the search bar is changed, show the apps that match the search.
-	var search = document.getElementById("search");
-	search.addEventListener("keyup", function (event) {
-		var apps = document.getElementsByClassName("app");
-		var search_value = search.value.toLowerCase();
-
-		for (var i = 0; i < apps.length; i++) {
-			var app = apps[i];
-			var app_name = app.getElementsByClassName("card-title")[0].innerHTML.toLowerCase();
-			var app_abbr = app.getElementsByClassName("card-text")[0].innerHTML.toLowerCase();
-
-			if (app_name.indexOf(search_value) > -1 || app_abbr.indexOf(search_value) > -1) {
-				app.style.display = "block";
-			} else {
-				app.style.display = "none";
-			}
-		}
-	});
-
-</script>
+<script src="{% static 'js/app.js' %}"></script>
 {% endblock %}
