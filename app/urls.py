@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import get_apps, increase_clicks, changelog
 
 urlpatterns = [

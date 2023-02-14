@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col my-5">
+			{% include "partials/_back.html" %}
+			<ul>
+				{% for document in documents %}
+				<li><a href="{{ document.file.url }}" target="_blank">{{ document.title }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}

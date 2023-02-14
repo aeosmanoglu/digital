@@ -13,7 +13,7 @@ def get_apps(request):
         'category': app.category.name,
         'url': app.url,
         'clicks': app.clicks,
-        'is_new': app.is_new().__str__(),} for app in apps]}
+        'is_new': app.is_new().__str__()} for app in apps]}
 
     return JsonResponse(data)
 

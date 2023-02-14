@@ -25,4 +25,4 @@ class App(models.Model):
         return self.name
 
     def is_new(self):
-        return self.created_at > timezone.now() - timedelta(days=1)
+        return self.created_at > timezone.now() - timedelta(days=3)
