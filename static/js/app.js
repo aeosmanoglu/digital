@@ -35,7 +35,6 @@ function filter_by_category(apps) {
 }
 
 function drawCards(apps) {
-    // Clear app container
     appContainer.innerHTML = "";
 
     apps.forEach(app => {
@@ -47,6 +46,23 @@ function drawCards(apps) {
 
         const cardBody = document.createElement("div");
         cardBody.className = "card-body";
+
+        const star = document.createElement("i");
+        const fullStar = document.createElement("i");
+        star.className = "bi bi-star";
+        fullStar.className = "bi bi-star-fill";
+
+        const cardFavButton = document.createElement("div");
+        cardFavButton.id = app.id;
+        cardFavButton.className = "card-fav";
+        if (localStorage.getItem(app.id) === null) {
+            localStorage.setItem(app.id, "false");
+        }
+        if (localStorage.getItem(app.id) === "true") {
+            cardFavButton.appendChild(fullStar);
+        } else {
+            cardFavButton.appendChild(star);
+        }
 
         const cardSubtitle = document.createElement("p");
         cardSubtitle.className = "card-subtitle text-muted small mb-4";
@@ -61,7 +77,7 @@ function drawCards(apps) {
         cardText.innerHTML = app.description;
 
         const cardLink = document.createElement("a");
-        cardLink.className = "link-primary stretched-link";
+        cardLink.className = "card-link stretched-link";
         cardLink.href = "/app/" + app.id + "/click";
         cardLink.setAttribute("target", "_blank");
 
@@ -76,11 +92,44 @@ function drawCards(apps) {
         cardBody.appendChild(cardSubtitle);
         cardBody.appendChild(cardTitle);
         cardBody.appendChild(cardText);
+        cardBody.appendChild(cardLink);
         card.appendChild(cardBody);
-        card.appendChild(cardLink);
+        card.appendChild(cardFavButton);
         column.appendChild(card);
         appContainer.appendChild(column);
+
+        cardFavButton.addEventListener("click", function () {
+            if (localStorage.getItem(app.id) === "true") {
+                localStorage.setItem(app.id, "false");
+                cardFavButton.innerHTML = "";
+                cardFavButton.appendChild(star);
+            } else {
+                localStorage.setItem(app.id, "true");
+                cardFavButton.innerHTML = "";
+                cardFavButton.appendChild(fullStar);
+            }
+            customSort(apps);
+            drawCards(apps);
+        });
     })
+}
+
+function customSort(apps) {
+    apps.sort(function (a, b) {
+        if (localStorage.getItem(a.id) === "true" && localStorage.getItem(b.id) === "false") {
+            return -1;
+        }
+        if (localStorage.getItem(a.id) === "false" && localStorage.getItem(b.id) === "true") {
+            return 1;
+        }
+        if (a.is_new === "True" && b.is_new === "False") {
+            return -1;
+        }
+        if (a.is_new === "False" && b.is_new === "True") {
+            return 1;
+        }
+        return b.clicks - a.clicks;
+    });
 }
 
 window.addEventListener("load", function () {
@@ -102,16 +151,7 @@ window.addEventListener("load", function () {
 
         const apps = data.apps;
 
-        // Sort apps by is_new and clicks
-        apps.sort((a, b) => {
-            if (a.is_new === "True" && b.is_new === "False") {
-                return -1;
-            } else if (a.is_new === "False" && b.is_new === "True") {
-                return 1;
-            } else {
-                return b.clicks - a.clicks;
-            }
-        });
+        customSort(apps);
 
         // Create checkboxes for each category and sort
         apps.forEach(app => {
@@ -123,7 +163,6 @@ window.addEventListener("load", function () {
 
         // Create checkboxes for each category
         categories.forEach(category => {
-
 
             const formCheck = document.createElement("div");
             formCheck.className = "form-check form-switch";

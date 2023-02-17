@@ -87,6 +87,30 @@ $utilities: map-merge(
 @import "../node_modules/bootstrap/scss/utilities/api";
 
 // 8. Add additional custom code here
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
 #search-container {
     margin-top: 10vh;
+}
+
+.card-fav {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: $primary-50;
+    color: $primary-900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-fav:hover {
+    background-color: $primary-100;
+}
+
+.badge {
+    z-index: 2;
 }
