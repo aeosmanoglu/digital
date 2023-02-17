@@ -3,7 +3,6 @@ from django.db import models
 
 class Announcement(models.Model):
     name = models.CharField(max_length=50)
-    sub_title = models.CharField(max_length=50, blank=True, null=True)
     content = models.TextField()
     url = models.URLField(blank=True, null=True)
     end_date = models.DateTimeField()

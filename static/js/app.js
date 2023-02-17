@@ -54,11 +54,11 @@ function drawCards(apps) {
 
         const cardTitle = document.createElement("h3");
         cardTitle.className = "card-title ";
-        cardTitle.innerHTML = app.abbreviation === "null" ? "" : app.abbreviation;
+        cardTitle.innerHTML = app.name;
 
         const cardText = document.createElement("p");
         cardText.className = "card-text";
-        cardText.innerHTML = app.name;
+        cardText.innerHTML = app.description;
 
         const cardLink = document.createElement("a");
         cardLink.className = "link-primary stretched-link";
@@ -92,9 +92,14 @@ window.addEventListener("load", function () {
         return response.json();
     }).then(data => {
         data.apps = Array.from(data.apps);
-        data.apps.clicks = Number(data.apps.clicks);
-        data.apps.is_new = String(data.apps.is_new);
+        data.apps.name = String(data.apps.name);
+        data.apps.description = String(data.apps.description);
         data.apps.category = String(data.apps.category);
+        data.apps.url = String(data.apps.url);
+        data.apps.is_new = String(data.apps.is_new);
+        data.apps.clicks = Number(data.apps.clicks);
+        data.apps.id = Number(data.apps.id);
+
         const apps = data.apps;
 
         // Sort apps by is_new and clicks
@@ -168,8 +173,7 @@ window.addEventListener("load", function () {
             const searchValue = searchInput.value.toLowerCase();
             filteredApps = filter_by_category(apps);
             filteredApps = filteredApps.filter(app => {
-                app.abbreviation = String(app.abbreviation);
-                return app.name.toLowerCase().includes(searchValue) || app.abbreviation?.toLowerCase().includes(searchValue);
+                return app.name.toLowerCase().includes(searchValue) || app.description.toLowerCase().includes(searchValue);
             });
             drawCards(filteredApps);
         });

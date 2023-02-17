@@ -4,7 +4,7 @@ from .models import App, Category
 
 
 class AppAdmin(admin.ModelAdmin):
-    list_display = ('name', 'abbreviation', 'category', 'url', 'clicks', 'created_at', 'is_new')
+    list_display = ('name', 'description', 'category', 'url', 'clicks', 'created_at', 'is_new')
 
 
 admin.site.register(App, AppAdmin)

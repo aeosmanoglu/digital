@@ -9,7 +9,7 @@ def get_apps(request):
     data = {'apps': [{
         'id': app.id,
         'name': app.name,
-        'abbreviation': app.abbreviation,
+        'description': app.description,
         'category': app.category.name,
         'url': app.url,
         'clicks': app.clicks,
