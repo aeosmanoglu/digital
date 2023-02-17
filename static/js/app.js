@@ -6,10 +6,22 @@ const appContainer = document.getElementById("app-container");
 let filteredApps = [];
 let categories = [];
 
-function toast_trigger() {
-    const toastElList = [].slice.call(document.querySelectorAll('.toast'));
-    const toastList = toastElList.map(toastEl => new bootstrap.Toast(toastEl));
-    toastList.forEach(toast => toast.show());
+function hideElement() {
+    const elements = document.querySelectorAll("[data-hide]");
+    elements.forEach(function (element) {
+        element.addEventListener("click", function () {
+            const hideClass = element.getAttribute("data-hide");
+            const closestElement = element.closest("." + hideClass);
+            closestElement.style.display = "none";
+        });
+    });
+}
+
+function displayAlerts() {
+    const alerts = document.querySelectorAll(".alert");
+    alerts.forEach(function (alert) {
+        alert.style.display = "block";
+    });
 }
 
 function filter_by_category(apps) {
@@ -42,7 +54,7 @@ function drawCards(apps) {
 
         const cardTitle = document.createElement("h3");
         cardTitle.className = "card-title ";
-        cardTitle.innerHTML = app.abbreviation==="null" ? "" : app.abbreviation;
+        cardTitle.innerHTML = app.abbreviation === "null" ? "" : app.abbreviation;
 
         const cardText = document.createElement("p");
         cardText.className = "card-text";
@@ -72,7 +84,9 @@ function drawCards(apps) {
 }
 
 window.addEventListener("load", function () {
-    toast_trigger();
+    hideElement();
+
+    searchInput.focus();
 
     fetch(appUrl).then(response => {
         return response.json();
@@ -104,8 +118,7 @@ window.addEventListener("load", function () {
 
         // Create checkboxes for each category
         categories.forEach(category => {
-            const column = document.createElement("div");
-            column.className = "col col-auto";
+
 
             const formCheck = document.createElement("div");
             formCheck.className = "form-check form-switch";
@@ -123,8 +136,7 @@ window.addEventListener("load", function () {
 
             formCheck.appendChild(input);
             formCheck.appendChild(label);
-            column.appendChild(formCheck);
-            checkboxContainer.appendChild(column);
+            checkboxContainer.appendChild(formCheck);
 
             /*
             Check the checkbox if the category is in the local storage.

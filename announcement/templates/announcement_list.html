@@ -3,39 +3,11 @@
 
 {% block content %}
 <div class="container">
-
-	<div class="row my-5">
-		<div class="col col-md-6 mx-auto">
-			<label class="visually-hidden" for="search-input">Search</label>
-			<input class="form-control form-control-lg rounded-pill"
-				   id="search-input" placeholder="Ara..." type="search">
-		</div>
-	</div>
-
-	<div class="row" id="checkbox-container"></div>
-
-	<div class="row row-cols-1 row-cols-md-3 g-3 my-5" id="app-container"></div>
+	{% include 'partials/_announcement.html' %}
+	{% include 'partials/_search.html' %}
+	<div class="row row-cols-1 row-cols-md-3 g-3 mb-5" id="app-container"></div>
 </div>
-
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-	{% for announcement in announcements %}
-	<div aria-atomic="true" aria-live="assertive" class="toast" data-bs-autohide="false" role="alert">
-		<div class="toast-header">
-			<strong class="me-auto">{{ announcement.name }}</strong>
-			{% if announcement.sub_title %}
-			<small class="text-muted">{{ announcement.sub_title }}</small>
-			{% endif %}
-			<button aria-label="Close" class="btn-close" data-bs-dismiss="toast" type="button"></button>
-		</div>
-		<div class="toast-body">
-			{{ announcement.content }}
-			{% if announcement.url %}
-			<a class="btn btn-primary btn-sm" href="{{ announcement.url }}">Daha fazla bilgi</a>
-			{% endif %}
-		</div>
-	</div>
-	{% endfor %}
-</div>
+{% include 'partials/_offcanvas.html' %}
 {% endblock %}
 
 {% block extra_js %}

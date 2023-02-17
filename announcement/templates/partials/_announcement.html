@@ -1,0 +1,17 @@
+{% if announcements %}
+<div class="row row-cols-1 mt-3" id="alert-container">
+	{% for announcement in announcements %}
+	<div class="col">
+		<div class="alert alert-primary alert-dismissible fade show small rounded-0" role="alert">
+			<strong>{{ announcement.name }}</strong><br>
+			{{ announcement.content }}
+			{% if announcement.url %}
+			<a class="alert-link" href="{{ announcement.url }}">Daha fazla bilgi</a>
+			{% endif %}
+			<button aria-label="Close" class="btn-close" data-hide="alert" type="button"></button>
+		</div>
+	</div>
+	{% endfor %}
+	<hr>
+</div>
+{% endif %}
