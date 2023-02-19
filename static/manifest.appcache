@@ -1,0 +1,12 @@
+CACHE MANIFEST
+# 2023-01-01 v1.0.0
+
+CACHE:
+index.html
+css/style.css
+css/style.css.map
+css/fonts/bootstrap-icons.woff
+css/fonts/bootstrap-icons.woff2
+js/app.js
+js/bootstrap.bundle.min.js
+js/bootstrap.bundle.min.js.map

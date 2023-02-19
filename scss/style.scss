@@ -90,7 +90,11 @@ $utilities: map-merge(
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
 
 #search-container {
-    margin-top: 10vh;
+    height: 40vh;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    background: $primary;
 }
 
 .card-fav {

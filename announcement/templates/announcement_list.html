@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
+{% include 'partials/_announcement.html' %}
+{% include 'partials/_search.html' %}
 <div class="container">
-	{% include 'partials/_announcement.html' %}
-	{% include 'partials/_search.html' %}
 	<div class="row row-cols-1 row-cols-md-3 g-3 mb-5" id="app-container"></div>
 </div>
 {% include 'partials/_offcanvas.html' %}

@@ -1,23 +1,35 @@
-<div class="row mb-5" id="search-container">
-	<div class="input-group col-12 col-md-8">
+<div class="container-fluid" id="search-container">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<p class="text-white fs-1">
+					<span class="fw-lighter">Jandarma</span> <span class="fw-bolder">Dijital</span>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-group col-12 col-md-8">
 
-		<input aria-label="Search" class="form-control form-control-lg rounded-0" id="search-input"
-			   placeholder="Ara..." type="search">
+				<input aria-label="Search" class="form-control form-control-lg rounded-0" id="search-input"
+					   placeholder="Uygulamayı Ara..." type="search">
 
-		<button aria-controls="offcanvas" class="btn btn-outline-secondary rounded-0"
-				data-bs-target="#offcanvas" data-bs-toggle="offcanvas" type="button">
-			<svg fill="currentColor" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-				<path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/>
-			</svg>
-		</button>
+				<button aria-controls="offcanvas" aria-label="Filter" class="btn btn-light rounded-0"
+						data-bs-target="#offcanvas" data-bs-toggle="offcanvas" type="button">
+					<svg fill="currentColor" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+						<path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z"/>
+					</svg>
+				</button>
 
-		{% if announcements %}
-		<button class="btn btn-outline-secondary rounded-0" onclick="displayAlerts()" type="button">
-			<svg fill="currentColor" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-				<path d="M4 19v-2h2v-7q0-2.075 1.25-3.688Q8.5 4.7 10.5 4.2v-.7q0-.625.438-1.062Q11.375 2 12 2t1.062.438q.438.437.438 1.062v.7q2 .5 3.25 2.112Q18 7.925 18 10v7h2v2Zm8-7.5ZM12 22q-.825 0-1.412-.587Q10 20.825 10 20h4q0 .825-.587 1.413Q12.825 22 12 22Zm-4-5h8v-7q0-1.65-1.175-2.825Q13.65 6 12 6q-1.65 0-2.825 1.175Q8 8.35 8 10Z"/>
-			</svg>
-		</button>
-		{% endif %}
+				{% if announcements %}
+				<button aria-label="Show Alarms" class="btn btn-light rounded-0" onclick="displayAlerts()"
+						type="button">
+					<svg fill="currentColor" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+						<path d="M4 19v-2h2v-7q0-2.075 1.25-3.688Q8.5 4.7 10.5 4.2v-.7q0-.625.438-1.062Q11.375 2 12 2t1.062.438q.438.437.438 1.062v.7q2 .5 3.25 2.112Q18 7.925 18 10v7h2v2Zm8-7.5ZM12 22q-.825 0-1.412-.587Q10 20.825 10 20h4q0 .825-.587 1.413Q12.825 22 12 22Zm-4-5h8v-7q0-1.65-1.175-2.825Q13.65 6 12 6q-1.65 0-2.825 1.175Q8 8.35 8 10Z"/>
+					</svg>
+				</button>
+				{% endif %}
 
+			</div>
+		</div>
 	</div>
 </div>

@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 {% load static %}
+<html manifest="{% static 'manifest.appcache' %}">
 <html lang="tr">
 
 <head>
 	<meta charset="UTF-8">
-	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta name="description"
+		content="Jandarma Genel Komutanlığı'nın dijitalleşme sürecinin bir parçası olarak, tüm uygulamalarını toplu bir şekilde sunmak amacıyla tasarlanmış ve hayata geçirilmiştir.">
 	<title>Jandarma Dijital</title>
 	<link href="{% static 'css/style.css' %}" rel="stylesheet" />
 	{% block extra_css %}{% endblock %}
+
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
+	<link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+	<link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#173f73">
+	<link rel="shortcut icon" href="{% static 'favicon/favicon.ico">
+	<meta name="msapplication-TileColor" content="#173f73">
+	<meta name="msapplication-TileImage" content="{% static 'favicon/mstile-144x144.png' %}">
+	<meta name="msapplication-config" content="{% static 'favicon/browserconfig.xml' %}">
+	<meta name="theme-color" content="#173f73">
 </head>
 
 <body class="bg-light">

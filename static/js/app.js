@@ -91,6 +91,8 @@ const drawCard = app => {
     // set other properties
     cardLink.href = "/app/" + app.id + "/click";
     cardLink.target = "_blank";
+    cardLink.rel = "noopener noreferrer";
+    cardLink.ariaLabel = "Open " + app.name + " in a new tab";
     localStorage.getItem(app.id) === null && localStorage.setItem(app.id, "false");
     cardFavButton.appendChild(localStorage.getItem(app.id) === "true" ? fullStar : star);
     app.is_new === "True" ? card.appendChild(cardBadge) : null;
