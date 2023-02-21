@@ -1,6 +1,6 @@
 {
   "name": "digital",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Bu site, Jandarma Genel Komutanlığının dijitalleşme sürecinin bir parçası olarak, tüm uygulamalarını toplu bir şekilde sunmak amacıyla tasarlanmış ve hayata geçirilmiştir.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

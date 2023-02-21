@@ -5,8 +5,6 @@ announcements, and files of all its applications.
 
 ## ToDo
 
-- [ ] Edit meta tags.
-- [ ] Add `bootstrap.bundle.min.js` file to the project.
 - [ ] Edit `settings.py` file and add `.env` file to the project.
 - [ ] Add `Dockerfile` file to the project.
 

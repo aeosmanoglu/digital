@@ -34,11 +34,7 @@ const displayAlerts = () => {
     alerts.forEach(alert => alert.style.display = "block");
 };
 
-/*
-Sort the apps by user favorite, the number of clicks and the newness.
-Then create the categories array and sort. The categories array is used to create the checkboxes.
- */
-const sequencer = apps => {
+const appsSorter = apps => {
     apps.sort((appA, appB) => {
         // Sort by favorites
         if (localStorage.getItem(appA.id) === "true" && localStorage.getItem(appB.id) === "false") return -1;
@@ -51,12 +47,24 @@ const sequencer = apps => {
         // Sort by clicks
         return appB.clicks - appA.clicks;
     });
+};
+
+const categoriesSorter = apps => {
     apps.forEach(app => {
         if (!categories.includes(app.category)) {
             categories.push(app.category);
         }
     });
     categories.sort();
+};
+
+/*
+Sort the apps by user favorite, the number of clicks and the newness.
+Then create the categories array and sort. The categories array is used to create the checkboxes.
+ */
+const sequencer = apps => {
+    appsSorter(apps);
+    categoriesSorter(apps);
 };
 
 const drawCard = app => {

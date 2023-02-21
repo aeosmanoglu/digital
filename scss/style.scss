@@ -90,6 +90,7 @@ $utilities: map-merge(
 @import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
 
 #search-container {
+    position: relative;
     height: 40vh;
     margin-bottom: 3rem;
     display: flex;
@@ -109,6 +110,8 @@ $utilities: map-merge(
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .card-fav:hover {
@@ -117,4 +120,22 @@ $utilities: map-merge(
 
 .badge {
     z-index: 2;
+}
+
+#admin {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $primary;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+#admin:hover {
+    color: $primary-300;
 }
